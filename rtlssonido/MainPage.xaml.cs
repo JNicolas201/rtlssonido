@@ -13,7 +13,7 @@ namespace rtlssonido;   // ← namespace correcto
 public partial class MainPage : ContentPage
 {
     // ⚠️ Cambia esta IP: abre CMD y escribe ipconfig → copia IPv4
-    const string SERVIDOR_URL = "http://192.168.6.201:5000/timestamps";
+    const string SERVIDOR_URL = "http://192.168.6.200:5000/timestamps";
 
     const int SAMPLE_RATE = 44100;
     const int CHIRP_MS = 30;
