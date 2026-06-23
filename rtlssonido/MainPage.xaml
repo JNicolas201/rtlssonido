@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="rtlssonido.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="RTLS Detector" FontSize="24"
+               FontAttributes="Bold" HorizontalOptions="Center"/>
+
+        <Label x:Name="lblEstado" Text="Presiona Iniciar"
+               HorizontalOptions="Center" TextColor="Gray"/>
+
+        <!-- Sensores -->
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Label Text="Acelerómetro:" VerticalOptions="Center"/>
+            <Label x:Name="lblAccel" Text="X:0 Y:0 Z:0" VerticalOptions="Center"/>
+            <Label Text="Giroscopio:" VerticalOptions="Center"/>
+            <Label x:Name="lblGyro" Text="X:0 Y:0 Z:0" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+        <Label x:Name="lblSensorDisp" Text="Disp (sensores): --- m" HorizontalOptions="Center" TextColor="LightGray"/>
+
+        <Button x:Name="btnIniciar" Text="Iniciar Detección"
+                Clicked="OnIniciarClicked" BackgroundColor="#3182ce"/>
+
+        <BoxView HeightRequest="1" BackgroundColor="#333" Margin="0,10"/>
+
+        <Label Text="Timestamps detectados:" FontAttributes="Bold"/>
+        <Label x:Name="lblT0" Text="Baliza 0: ---" TextColor="#63b3ed"/>
+        <Label x:Name="lblT1" Text="Baliza 1: ---" TextColor="#63b3ed"/>
+        <Label x:Name="lblT2" Text="Baliza 2: ---" TextColor="#63b3ed"/>
+        <Label x:Name="lblT3" Text="Baliza 3: ---" TextColor="#63b3ed"/>
+
+        <!-- Threshold control -->
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Label Text="Threshold:" VerticalOptions="Center"/>
+            <Slider x:Name="sliderThreshold" Minimum="0.1" Maximum="0.9" Value="0.35" WidthRequest="200" ValueChanged="OnThresholdChanged"/>
+            <Label x:Name="lblThresholdVal" Text="0.35" VerticalOptions="Center"/>
+            <Button x:Name="btnResetThreshold" Text="Reset" Clicked="OnResetThresholdClicked"/>
+        </HorizontalStackLayout>
+
+        <!-- Log visual de correlaciones -->
+        <Label x:Name="lblCorrLog" Text="" FontSize="12" TextColor="LightGray" LineBreakMode="WordWrap"/>
+
+        <BoxView HeightRequest="1" BackgroundColor="#333" Margin="0,10"/>
+
+        <!-- Mapa 2D local: GraphicsView mostrará la posición en metros -->
+        <GraphicsView x:Name="mapView"
+                      HeightRequest="300"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill"
+                      BackgroundColor="#111"/>
+
+        <!-- Controles para ajustar tamaño del área / balizas -->
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Start">
+            <Label Text="Área (m):" VerticalOptions="Center"/>
+            <Entry x:Name="entryAreaSize" WidthRequest="80" Keyboard="Numeric"/>
+            <Button x:Name="btnActualizarBalizas" Text="Actualizar balizas" Clicked="OnActualizarBalizasClicked"/>
+            <Button x:Name="btnZoomIn" Text="+" WidthRequest="40" Clicked="OnZoomInClicked"/>
+            <Button x:Name="btnZoomOut" Text="-" WidthRequest="40" Clicked="OnZoomOutClicked"/>
+        </HorizontalStackLayout>
+
+        <!-- Entrada manual de coordenadas para cada baliza -->
+        <Label Text="Coordenadas balizas (m):" FontAttributes="Bold"/>
+        <VerticalStackLayout Spacing="6">
+            <HorizontalStackLayout Spacing="6">
+                <Label Text="B0:" WidthRequest="30" VerticalOptions="Center"/>
+                <Entry x:Name="entryB0X" Placeholder="X" WidthRequest="80" Keyboard="Numeric"/>
+                <Entry x:Name="entryB0Y" Placeholder="Y" WidthRequest="80" Keyboard="Numeric"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="6">
+                <Label Text="B1:" WidthRequest="30" VerticalOptions="Center"/>
+                <Entry x:Name="entryB1X" Placeholder="X" WidthRequest="80" Keyboard="Numeric"/>
+                <Entry x:Name="entryB1Y" Placeholder="Y" WidthRequest="80" Keyboard="Numeric"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="6">
+                <Label Text="B2:" WidthRequest="30" VerticalOptions="Center"/>
+                <Entry x:Name="entryB2X" Placeholder="X" WidthRequest="80" Keyboard="Numeric"/>
+                <Entry x:Name="entryB2Y" Placeholder="Y" WidthRequest="80" Keyboard="Numeric"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="6">
+                <Label Text="B3:" WidthRequest="30" VerticalOptions="Center"/>
+                <Entry x:Name="entryB3X" Placeholder="X" WidthRequest="80" Keyboard="Numeric"/>
+                <Entry x:Name="entryB3Y" Placeholder="Y" WidthRequest="80" Keyboard="Numeric"/>
+            </HorizontalStackLayout>
+            <Button x:Name="btnAplicarCoords" Text="Aplicar coordenadas balizas" Clicked="OnAplicarCoordenadasClicked"/>
+        </VerticalStackLayout>
+
+        <Label Text="Posición calculada:" FontAttributes="Bold"/>
+        <Label x:Name="lblPosicion" Text="X: --- | Y: ---"
+               FontSize="20" TextColor="#68d391" HorizontalOptions="Center"/>
+
+        <Button x:Name="btnEspectro" 
+                Text="Ver Espectro" 
+                Clicked="OnEspectroClicked"
+                BackgroundColor="Purple"
+                Margin="0,10,0,0" />
+
+        <GraphicsView x:Name="spectrumView" 
+                      HeightRequest="200" 
+                      BackgroundColor="Black" 
+                      Margin="0,10,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

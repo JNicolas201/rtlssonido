@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <!-- Allow cleartext traffic for development on local network -->
+  <base-config cleartextTrafficPermitted="true" />
+  <!-- Optionally restrict to specific domain(s):
+  <domain-config cleartextTrafficPermitted="true">
+    <domain>192.168.6.201</domain>
+  </domain-config>
+  -->
+</network-security-config>
