@@ -74,6 +74,9 @@ public partial class MainPage : ContentPage
         lblThresholdVal.Text = _thresholdFactor.ToString("F2");
     }
 
+
+    //prueba de commit
+
     void OnThresholdChanged(object sender, ValueChangedEventArgs e)
     {
         // Snap to 0.05 steps
