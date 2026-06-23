@@ -233,8 +233,8 @@ public partial class MainPage : ContentPage
                     double[] tComp = new double[4];
                     tComp[0] = timestamps[0] - 0.000;
                     tComp[1] = timestamps[1] - 0.060;
-                    tComp[2] = timestamps[2] - 0.120;
-                    tComp[3] = timestamps[3] - 0.180;
+                    tComp[2] = timestamps[2] - 0.127;
+                    tComp[3] = timestamps[3] - 0.187;
 
                     double rangoMS = (tComp.Max() - tComp.Min()) * 1000;
                     System.Diagnostics.Debug.WriteLine($"COMPENSADOS: {string.Join(", ", tComp.Select(v => v.ToString("F6")))} rango={rangoMS:F1}ms");
@@ -338,7 +338,7 @@ public partial class MainPage : ContentPage
         sb.AppendLine($"B0: idx={mejorB0} t={timestamps[0]:F4}s val={mejorValB0:F3} (búsqueda completa)");
 
         // ===== PASO 2: Buscar B1, B2, B3 relativos a B0 =====
-        double[] offsetEsperado = { 0.0, 0.060, 0.120, 0.180 }; 
+        double[] offsetEsperado = { 0.0, 0.060, 0.127, 0.187 }; 
         double margen = 0.007;  // ±10ms
 
         for (int b = 1; b < 4; b++)
